@@ -13,14 +13,18 @@ Actuadores de Riego.
 
 ---> Funcionamiento:
 
-Captura de Imágenes: La cámara captura imágenes de las plantas en el jardín.
-Procesamiento de Imágenes: La IA integrada en el sistema procesa las imágenes para identificar la variedad de la flor, utilizando un modelo de clasificación previamente entrenado.
-Medición de la Humedad del Suelo: Mientras se procesan las imágenes, el sensor de humedad del suelo continúa monitoreando la humedad del suelo alrededor de las plantas.
-Determinación del Tiempo de Riego: La IA, basada en la variedad de la flor identificada y la humedad del suelo, determina el tiempo de riego óptimo para la planta en cuestión.
-Control de Riego: El Arduino activa los actuadores de riego durante el tiempo determinado, asegurando que las plantas reciban la cantidad adecuada de agua.
+-> Captura de Imágenes: Se introduce una imagen de la flor a regar.
 
-Beneficios:
+-> Procesamiento de Imágenes: La IA integrada en el sistema procesa las imágenes para identificar la variedad de la flor, utilizando un modelo de clasificación previamente entrenado.
 
-Eficiencia de Riego: El sistema proporciona la cantidad justa de agua requerida por cada planta, evitando el desperdicio y garantizando un crecimiento saludable.
-Automatización: La automatización del riego reduce la necesidad de intervención humana, lo que resulta en un mantenimiento más fácil y conveniente del jardín.
-Personalización: La capacidad de identificar diferentes variedades de plantas permite adaptar el riego a las necesidades específicas de cada especie.
+-> Medición de la Humedad del Suelo: Mientras se procesan las imágenes, el sensor de humedad del suelo continúa monitoreando la humedad del suelo alrededor de las plantas.
+
+-> Determinación del Tiempo de Riego: La IA, basada en la variedad de la flor identificada y la humedad del suelo, determina el tiempo de riego óptimo para la planta en cuestión.
+
+-> Control de Riego: El Arduino activa los actuadores de riego durante el tiempo determinado, asegurando que las plantas reciban la cantidad adecuada de agua.
+
+---> Beneficios:
+
+-> Eficiencia de Riego: El sistema proporciona la cantidad justa de agua requerida por cada planta, evitando el desperdicio y garantizando un crecimiento saludable.
+-> Automatización: La automatización del riego reduce la necesidad de intervención humana, lo que resulta en un mantenimiento más fácil y conveniente del jardín.
+-> Personalización: La capacidad de identificar diferentes variedades de plantas permite adaptar el riego a las necesidades específicas de cada especie.
