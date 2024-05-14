@@ -1,0 +1,121 @@
+<!--login.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles_Login.css"> <!-- Corregido el atributo href -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3"></script>
+    
+
+    <!-- Header -->
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <a href="index.html" class="nav-link">Inicio</a>
+        </nav>
+        
+    </header>
+    <section id="login-section">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form id="signUpForm" action="/register" method="post">
+                    <h1>Crear cuenta</h1>
+                    <span>Usa tu correo electrónico</span>
+                    <input type="text" id="signupUserName" name="username" placeholder="Nombre de usuario" required />
+                    <input type="email" id="signupEmail" name="email" placeholder="Email" required />
+                    <input type="password" id="signupPassword" name="password" placeholder="Password" required />
+                    <button type="submit">Crear cuenta</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form id="signInForm" action="/login" method="post">
+                    <h1>Iniciar sesión</h1>
+                    <span>Usa tu correo electronico</span>
+                    <input type="email" id="loginEmail" placeholder="Correo electronico" required />
+                    <input type="password" id="loginPassword" placeholder="Password" required />
+                    <button type="submit">Iniciar sesión</button>
+                </form>
+            </div>
+            <!-- Esta parte es de información de login  -->
+            <div class="overlay-container">
+                <div class="overlay">
+                    <!-- informacion de registrarse -->
+                    <div class="overlay-panel overlay-left">
+                        <h1>¡Bienvenido!</h1>
+                        <div id="usernameDisplay"></div>
+                        <div class="logo">
+                            <img src="imagenes/logo.jpg" alt="Logo" class="logo">
+                        </div>
+                        <h1>Unete a FLORA-NET</h1>
+                        <button class="ghost" id="signIn">Iniciar sesión</button>
+                    </div>
+                    <!-- información de inicio de sesión  -->
+                    <div class="overlay-panel overlay-right">
+                        <h1>¡Bienvenido!</h1>
+                        <div id="usernameDisplay"></div>
+                        <div class="logo">
+                            <img src="imagenes/logo.jpg" alt="Logo" class="logo">
+                        </div>
+                        <h1>Unete a FLORA-NET</h1>
+                        <p>Registrate y comienza </p>
+                        <button class="ghost" id="signUp">Registrate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>
+            FLORA-NET 2024
+        </p>
+    </footer> 
+
+    <script>
+        
+
+        document.getElementById('signInForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }), // Enviar email y contraseña en el cuerpo de la solicitud
+            })
+            .then(response => {
+                if (!response.ok) {
+                    alert ("Error de credenciales. Intentalo de nuevo");
+                }
+                return response.json(); // Parsear la respuesta como JSON
+            })
+            .then(data => {
+                // Redirigir al usuario a index.html
+                window.location.href = 'home.html';
+
+                // Mostrar el nombre de usuario en algún elemento HTML con el id "usernameDisplay"
+                document.getElementById('usernameDisplay').textContent = `¡Hola, ${data.username}!`;
+            })
+            .catch(error => {
+                // Mostrar el error al usuario
+                const errorDisplay = document.getElementById('errorDisplay');
+                errorDisplay.textContent = error.message;
+            });
+        });
+
+
+        
+    </script>
+</body>
+
+
+<script src="scripts/script.js"></script>
+</html>
