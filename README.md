@@ -28,3 +28,9 @@ Actuadores de Riego.
   -> Automatización: La automatización del riego reduce la necesidad de intervención humana, lo que resulta en un mantenimiento más fácil y conveniente del jardín.
   
   -> Personalización: La capacidad de identificar diferentes variedades de plantas permite adaptar el riego a las necesidades específicas de cada especie.
+
+El 100 en estas imagenes en la consola representa una humedad nula:
+![Imagen de WhatsApp 2024-05-13 a las 20 37 17_a753307f](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/62d89c8a-1b60-434d-9f91-c648b47edd32)
+
+El número desciende en esta imagen dentro de la consola y representa una mayor humedad en la tierra:
+![Imagen de WhatsApp 2024-05-13 a las 20 37 17_7631701e](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/80c5c1da-5a20-4255-87c1-656ae2e74ae8)
