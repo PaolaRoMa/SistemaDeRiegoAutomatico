@@ -36,3 +36,8 @@ El 100 en estas imagenes en la consola representa una humedad nula:
 El número desciende en esta imagen dentro de la consola y representa una mayor humedad en la tierra:
 
 ![Imagen de WhatsApp 2024-05-13 a las 20 37 17_7631701e](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/80c5c1da-5a20-4255-87c1-656ae2e74ae8)
+
+Conexión al Arduino:
+
+![Imagen de WhatsApp 2024-05-13 a las 20 37 23_cebfb0ef](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/7c275eeb-d4d5-407c-a0e7-d3c1c7012af7)
+
