@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -16,6 +16,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left; /* Alinea el texto a la izquierda */
     margin-top: 40px; /* Agrega un margen superior */
+    margin-bottom: 80px;
+    
 }
 
 
@@ -121,3 +123,30 @@ header {
 
 /* Estilos para el header */
 
+/*Pie de pagina */
+footer {
+    background-color: #626e52; /* Establece el color de fondo a un tono oscuro */
+    color: #fff; /* Establece el color del texto a blanco */
+    font-size: 14px; /* Establece el tamaño de fuente a 14 píxeles */
+    bottom: 0px; /* Posiciona el pie de página alineado con la parte inferior de la ventana gráfica */
+    position: fixed; /* Fija la posición del pie de página en relación con la ventana gráfica */
+    left: 0; /* Posiciona el pie de página alineado con el borde izquierdo de la ventana gráfica */
+    right: 0; /* Posiciona el pie de página alineado con el borde derecho de la ventana gráfica */
+    text-align: center; /* Alinea el contenido del pie de página al centro */
+    z-index: 999; /* Establece el orden de apilamiento del pie de página por encima de otros elementos */
+    margin-top: 700px; /* Agrega espacio entre el pie de página y la sección anterior */
+    padding: 5px 0; /* Agrega relleno arriba y abajo */
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: #626e52 ;
+}
+
+footer a {
+    color: #B3C2A0 ;
+    text-decoration: none;
+}
