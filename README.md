@@ -35,3 +35,9 @@ Actuadores de Riego.
 
 ![image](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/6d733855-31d4-4bd9-a6ed-66eb0efa8502)
 
+![Imagen de WhatsApp 2024-05-13 a las 20 37 17_cb497052](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/f076a810-64e4-46c5-9db9-4b0b59bccc68)
+
+![Imagen de WhatsApp 2024-05-15 a las 13 02 27_dc070405](https://github.com/PaolaRoMa/SistemaDeRiegoAutomatico/assets/92270132/c3c29f2e-9af1-4adb-82ed-288cc2339933)
+
+
+
