@@ -13,28 +13,35 @@ except serial.SerialException as e:
 # URL de tu servidor web donde manejas los datos de humedad
 url = 'http://localhost:3000/humidity'
 
-while True:
-    try:
-        # Lee una línea de datos del puerto serie y elimina los espacios en blanco y el carácter de nueva línea
-        humedad = ser.readline().strip().decode('utf-8').strip()
+def enviar_comando_regar():
+    ser.write(b'REGAR\n')
+    print("Comando REGAR enviado.")
 
-        # Imprime el valor de humedad leído
-        print('Valor de humedad leído:', humedad)
+try:
+    while True:
+        try:
+            # Lee una línea de datos del puerto serie y elimina los espacios en blanco y el carácter de nueva línea
+            humedad = ser.readline().strip().decode('utf-8').strip()
 
-        # Envía los datos de humedad al servidor web solo si hay datos válidos
-        if humedad:
-            payload = {'humidity': humedad}
-            response = requests.post(url, data=payload)
-            # Imprime la respuesta del servidor (para propósitos de depuración)
-            print('Respuesta del servidor:', response.text)
-        else:
-            print('Datos de humedad no válidos.')
+            # Imprime el valor de humedad leído
+            print('Valor de humedad leído:', humedad)
 
-    except Exception as e:
-        print("Error:", e)
+            # Envía los datos de humedad al servidor web solo si hay datos válidos
+            if humedad:
+                payload = {'humidity': humedad}
+                response = requests.post(url, data=payload)
+                # Imprime la respuesta del servidor (para propósitos de depuración)
+                print('Respuesta del servidor:', response.text)
+            else:
+                print('Datos de humedad no válidos.')
 
-    # Agrega un tiempo de espera entre lecturas para evitar sobrecargar el servidor
-    time.sleep(1)
+        except Exception as e:
+            print("Error:", e)
 
-# Cierra el puerto serie al salir del bucle
-ser.close()
+        # Agrega un tiempo de espera entre lecturas para evitar sobrecargar el servidor
+        time.sleep(1)
+
+finally:
+    # Asegúrate de cerrar el puerto serie al salir del bucle
+    ser.close()
+    print("Puerto serie cerrado.")

@@ -1,9 +1,14 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const mysql = require('mysql');
 const morgan = require('morgan'); // Importa el middleware de registro morgan
+const session = require('express-session');
+const SerialPort = require('serialport').SerialPort;
+
+// Configura el puerto serie para comunicarse con el Arduino
+//const arduinoPort = new serialport('COM3', { baudRate: 9600 });
+
 
 const app = express();
 const port = 3000;
@@ -14,14 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Middleware de registro morgan
 app.use(morgan('dev')); // Registra las solicitudes HTTP en la consola
-
-// Ruta de manejo para la ruta raíz "/"
-app.get('/', (req, res) => {
-    const indexPath = path.join(__dirname, 'public', 'index.html');
-    res.sendFile(indexPath);
-});
 
 // Configuración de la conexión a la base de datos
 const db = mysql.createConnection({
@@ -30,8 +30,6 @@ const db = mysql.createConnection({
     password: 'MiriamJal01@', // Reemplaza 'tu_contraseña' con la contraseña de tu base de datos
     database: 'datos' // Reemplaza 'nombre_de_tu_base_de_datos' con el nombre de tu base de datos
 });
-
-const session = require('express-session');
 
 app.use(session({
     secret: 'secreto', // Clave secreta para firmar la cookie de sesión
@@ -47,12 +45,17 @@ db.connect((err) => {
     console.log('Conexión exitosa a la base de datos MySQL');
 });
 
-app.post('/register', (req, res) => {
+// Ruta de manejo para la ruta raíz "/"
+app.get('/', (req, res) => {
+    const indexPath = path.join(__dirname, 'public', 'index.html');
+    res.sendFile(indexPath);
+});
 
-    const {username, email, password } = req.body;
+app.post('/register', (req, res) => {
+    const { username, email, password } = req.body;
 
     // Verificar si email y password están presentes y no son cadenas vacías
-    if ( !username||!email || !password) {
+    if (!username || !email || !password) {
         console.error('Email o contraseña vacíos.');
         return res.status(400).send('Email y contraseña son obligatorios.');
     }
@@ -66,13 +69,10 @@ app.post('/register', (req, res) => {
             console.error('Error al ejecutar la consulta de inserción:', err);
             return res.status(500).send('Error interno del servidor');
         }
-    
+
         res.redirect('/login.html');
-        
     });
-
 });
-
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -100,9 +100,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-
-
-
 // TODO LO DEL ARDUINO -->
 let lastHumidity = null;
 
@@ -119,13 +116,30 @@ app.post('/humidity', (req, res) => {
     }
 });
 
-
 // Ruta para obtener los últimos datos de humedad
 app.get('/lastHumidity', (req, res) => {
     res.json({ humidity: lastHumidity }); // Enviar los últimos datos de humedad al cliente
 });
-// TODO LO DEL ARDUINO <--
 
+console.log("Definiendo la ruta /regardesdejs");
+// Maneja la ruta para encender el LED en la protoboard
+app.get('/regardesdejs', (req, res) => {
+    console.log("Recibida solicitud GET a la ruta /regardesdejs");
+
+    // Envía el comando "REGAR" al Arduino a través del puerto serie
+    arduinoPort.write('REGAR\n', (err) => {
+        if (err) {
+            console.error('Error al enviar el comando al Arduino:', err);
+            res.status(500).send('Error al enviar el comando al Arduino');
+        } else {
+            console.log('Comando de riego enviado al Arduino.');
+            res.send('Comando de riego enviado al Arduino.');
+        }
+    });
+});
+
+
+// TODO LO DEL ARDUINO <--
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
 });
